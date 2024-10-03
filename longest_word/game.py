@@ -24,10 +24,6 @@ class Game:
 
     @staticmethod
     def __check_dictionary(word):
-        try:
-            response = requests.get(f"https://dictionary.lewagon.com/{word}")
-            response.raise_for_status()  # Ensure we handle HTTP errors
-            json_response = response.json()
-            return json_response.get('found', False)  # Return 'found', default to False if missing
-        except requests.RequestException:
-            return False
+        response = requests.get(f"https://dictionary.lewagon.com/{word}")
+        json_response = response.json()
+        return json_response['found']
